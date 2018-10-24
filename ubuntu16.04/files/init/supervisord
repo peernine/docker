@@ -16,9 +16,9 @@ PID=; trap '[[ ${PID} ]] && kill ${PID}; exit 0' SIGTERM
 # in the Dockerfile for the same file. If you want to disable a hook, rename it.
 chmod +x /hooks/{supervisord-init.d/*,supervisord} 2> /dev/null || true
 
-supervisord_pre=$(ls /hooks/supervisord-init.d/* 2>/dev/null | sort -n )
-if [ "$supervisord_pre" != "" ]; then
-  for hook in $supervisord_pre; do
+supervisord_init=$(ls /hooks/supervisord-init.d/* 2>/dev/null | sort -n )
+if [ "$supervisord_init" != "" ]; then
+  for hook in $supervisord_init; do
     echo "Executing hook ${hook}"
     /bin/bash -c "${hook}"
     if [ "$?" != "0" ]; then

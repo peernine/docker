@@ -33,9 +33,9 @@ check_depending_env () {
 # in the Dockerfile for the same file. If you want to disable a hook, rename it.
 chmod +x /init/setup /hooks/{entrypoint-init.d/*,entrypoint-run,entrypoint-exec} 2> /dev/null || true
 
-entrypoint_pre=$(ls /hooks/entrypoint-init.d/* 2>/dev/null | sort -n )
-if [ "$entrypoint_pre" != "" ]; then
-  for hook in $entrypoint_pre; do
+entrypoint_init=$(ls /hooks/entrypoint-init.d/* 2>/dev/null | sort -n )
+if [ "$entrypoint_init" != "" ]; then
+  for hook in $entrypoint_init; do
     echo "Executing hook ${hook}"
     /bin/bash -c "${hook}"
     if [ "$?" != "0" ]; then
