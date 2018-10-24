@@ -1,13 +1,14 @@
 FROM peernine/ubuntu:16.04
 MAINTAINER Alex Lee <alex.lee@peernine.co.kr>
 
+ENV GOLANG_VERSION 1.11.1
 
 # -----------------------------------------------------------------------------
 # golang1.11.1 다운로드
 RUN set -eux \
 	&& mkdir -p /home/peernine/_src  /home/peernine/_project \
-	&& axel -n 10 -o /home/peernine/_src/go.tgz https://dl.google.com/go/go1.11.1.linux-amd64.tar.gz \
-	&& echo '2871270d8ff0c8c69f161aaae42f9f28739855ff5c5204752a8d92a1c9f63993 /home/peernine/_src/go.tgz' | sha256sum -c - \
+	&& axel -n 10 -o /home/work/_src/go.tgz https://storage.googleapis.com/golang/go$GOLANG_VERSION.src.tar.gz \
+	&& echo '558f8c169ae215e25b81421596e8de7572bd3ba824b79add22fba6e284db1117 /home/peernine/_src/go.tgz' | sha256sum -c - \
 	&& tar -C /home/peernine/_app -xzf /home/peernine/_src/go.tgz \
 	&& cd /home/peernine/_app/go/src \
 	&& ./make.bash \
