@@ -1,1 +1,1 @@
-# docker
+# Ubuntu 16.04 docker image distributed by Peernine.
