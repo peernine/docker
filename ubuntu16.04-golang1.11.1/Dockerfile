@@ -7,20 +7,18 @@ ENV GOLANG_VERSION 1.11.1
 # golang1.11.1 다운로드
 RUN set -eux \
 	&& mkdir -p /home/peernine/_src  /home/peernine/_project \
-	&& axel -n 10 -o /home/work/_src/go.tgz https://storage.googleapis.com/golang/go$GOLANG_VERSION.src.tar.gz \
-	&& echo '558f8c169ae215e25b81421596e8de7572bd3ba824b79add22fba6e284db1117 /home/peernine/_src/go.tgz' | sha256sum -c - \
+	&& axel -n 10 -o /home/peernine/_src/go.tgz https://storage.googleapis.com/golang/go$GOLANG_VERSION.linux-amd64.tar.gz \
+	&& echo '2871270d8ff0c8c69f161aaae42f9f28739855ff5c5204752a8d92a1c9f63993 /home/peernine/_src/go.tgz' | sha256sum -c - \
+	#go를 _app에 풀어놓음.
 	&& tar -C /home/peernine/_app -xzf /home/peernine/_src/go.tgz \
-	&& cd /home/peernine/_app/go/src \
-	&& ./make.bash \
+	&& rm /home/peernine/_src/go.tgz \
 	&& mv /home/peernine/_app/go /home/peernine/_app/go1.11.1 \
 	&& mkdir -p /home/peernine/_project/golang/src /home/peernine/_project/golang/pkg /home/peernine/_project/golang/bin
-
 
 # -----------------------------------------------------------------------------
 # git
 RUN apt-fast update -y \
 	&& apt-fast install -y git
-
 
 # -----------------------------------------------------------------------------
 # 정리
