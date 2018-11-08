@@ -1,0 +1,12 @@
+#ethstats
+version: "3"
+services:
+
+  ubuntu_16.04-ethstats:
+    environment:
+      - WS_SECRET=peerpass
+    build:
+      context: ./
+    container_name: ubuntu_16.04-ethstats
+    ports:
+      - 3000:3000/tcp
