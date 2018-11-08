@@ -1,0 +1,13 @@
+version: "3"
+services:
+
+  ubuntu16.04-geth:
+    build:
+      context: ./
+      args:
+        binary: 1.8.17+build15807+xenial
+    container_name: ubuntu:16.04-geth
+    ports:
+      - 30301:30301/udp
+      - 30303:30303/udp
+
