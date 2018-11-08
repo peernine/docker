@@ -1,3 +1,4 @@
+#ubuntu16.04-geth
 FROM peernine/ubuntu:16.04
 MAINTAINER Alex Lee <alex.lee@peernine.co.kr>
 
